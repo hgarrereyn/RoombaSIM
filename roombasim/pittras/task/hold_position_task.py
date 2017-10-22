@@ -64,7 +64,7 @@ class HoldPositionTask(Task):
                                          self.hold_duration * 1000):
             if (np.linalg.norm(drone_state['xy_pos'] - self.hold_xy) <
                     cfg.PITTRAS_HOLD_POSITION_TOLERANCE and
-                    drone_state['z_pos'] - self.hold_z <
+                    abs(drone_state['z_pos'] - self.hold_z) <
                     cfg.PITTRAS_HOLD_POSITION_TOLERANCE):
                 self.complete(TaskState.SUCCESS)
                 self.state = HoldPositionTaskStates.done
