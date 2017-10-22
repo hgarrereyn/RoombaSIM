@@ -33,7 +33,7 @@ class VelocityTask(Task):
         drone_state = state_controller.query('DroneState', environment)
 
         if np.linalg.norm(self.target_xy - drone_state['xy_vel']) < \
-                cfg.PITTRAS_XYZ_TRANSLATION_ACCURACY:
+                cfg.PITTRAS_VELOCITY_TOLERANCE:
             self.complete(TaskState.SUCCESS)
             return
 
