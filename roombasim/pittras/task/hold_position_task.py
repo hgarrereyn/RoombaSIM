@@ -63,9 +63,9 @@ class HoldPositionTask(Task):
         if (self.hold_duration > 0) and (elapsed - self.start_time >
                                          self.hold_duration * 1000):
             if (np.linalg.norm(drone_state['xy_pos'] - self.hold_xy) <
-                    cfg.PITTRAS_XYZ_TRANSLATION_ACCURACY and
+                    cfg.PITTRAS_HOLD_POSITION_TOLERANCE and
                     drone_state['z_pos'] - self.hold_z <
-                    cfg.PITTRAS_XYZ_TRANSLATION_ACCURACY):
+                    cfg.PITTRAS_HOLD_POSITION_TOLERANCE):
                 self.complete(TaskState.SUCCESS)
                 self.state = HoldPositionTaskStates.done
             else:
@@ -92,5 +92,5 @@ class HoldPositionTask(Task):
         self.i_z += p_z * delta
         control_z = self.k_z.dot([p_z, d_z, self.i_z])
 
-        # perform control action
+        # Perform control action
         environment.agent.control(adjusted_xy, 0, control_z)
