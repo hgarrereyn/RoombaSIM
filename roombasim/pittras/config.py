@@ -75,3 +75,10 @@ PITTRAS_PID_Z = np.array([0.5,0,0])
 
 # Tolerance for distance comparasion in the HoldPositionTask
 PITTRAS_HOLD_POSITION_TOLERANCE = 0.2
+
+# PID constants for velocity task
+# [Kp,Kd,Ki]
+PITTRAS_VELOCITY_PID_XY = np.array([0.5,1.1,0])
+
+# Tolerance for speed comparasion in the VelocityTask
+PITTRAS_VELOCITY_TOLERANCE = 0.1
